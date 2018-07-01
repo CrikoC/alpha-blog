@@ -1,6 +1,6 @@
 # Ruby On Rails Blog
 
-This is a simple blog application that a made using ruby on rails.
+This is a simple blog application that i made using ruby on rails.
 
 Things i will cover:
 
