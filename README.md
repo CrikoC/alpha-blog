@@ -8,7 +8,7 @@ Things i will cover:
 
 * Templates
 
-* Contollers
+* Controllers
 
 * Database creation
 
