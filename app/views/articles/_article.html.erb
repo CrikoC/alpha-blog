@@ -1,0 +1,18 @@
+<% obj.each do |article| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <h3><%= article.title %></h3>
+        <p><%= article.body %></p>
+        <hr>
+        <small>
+          Created at: <%= time_ago_in_words(article.created_at) %> ago<br/>
+          Updated at: <%= time_ago_in_words(article.updated_at) %> ago
+        </small>
+        <hr>
+        <link_to "Edit", edit_article_path(article), class: "btn btn-primary btn-xs">
+        <link_to "Delete", article_path(article), class: "btn btn-primary btn-xs" method: :delete, data: { confirm: "Are you sure?" }>
+      </div>
+    </div>
+  </div>
+<% end %>

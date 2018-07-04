@@ -1,26 +1,22 @@
-<h1>Users <%= link_to 'Create New', new_user_path, class: 'btn btn-success btn-small' %></h1>
-<hr>
-<table class="table table-responsive">
-  <thead>
-    <th>ID</td>
-    <th>Username</td>
-    <th>email</td>
-    <th></td>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.username %></td>
-        <td><%= user.email %></td>
-        <td>
-        <td>
-          <%= link_to 'Show', user_path(user), class: 'btn btn-warning btn-small' %>
-          <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-primary btn-small' %>
-          <%= link_to 'Delete', user_path(user), class: 'btn btn-danger btn-small' , method: :delete, data: { confirm: "Are you sure?" } %>
-        </td>
-        </>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1 align="center">Alpha Bloggers</h1>
+<div align="center">
+  <%= will_paginate %>
+</div>
+<% @users.each do |user| %>
+  <ul class="list-group">
+    <div class="row">
+      <div class="well col-md-4 col-md-offset-4">
+        <li class="list-group-item"><%= link_to gravatar_for(user), user_path(user) %></li>
+        <li class="list-group-item"><%= link_to user.username, user_path(user) %></li>
+        <li class="list-group-item">
+          <small>
+            <%= pluralize(user.articles.count, "article") if user.articles %>
+          </small>
+        </li>
+      </div>
+    </div>
+  </ul>
+<% end %>
+<div align="center">
+  <%= will_paginate %>
+</div>

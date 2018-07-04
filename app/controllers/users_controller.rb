@@ -2,10 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], pre_page: 5)
   end
   
   def show
+    @user_articles = @user.articles.paginate(page: params[:page], pre_page: 5)
   end
   
   def new
@@ -19,8 +20,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = "User was successfully created!"
-      redirect_to user_path(@user)
+      flash[:success] = "User was successfully registered!"
+      redirect_to articles_path
     else
       render 'new'
     end
@@ -28,8 +29,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "User was successfully updated!"
-      redirect_to user_path(@user)
+      flash[:success] = "User Profile was successfully updated!"
+      redirect_to edit_user_path
     else
       render 'edit'
     end
@@ -47,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.required(:user).permit(:username, :email)
+    params.required(:user).permit(:username, :email, :password)
   end
 end
