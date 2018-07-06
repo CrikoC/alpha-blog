@@ -10,8 +10,10 @@
           Updated at: <%= time_ago_in_words(article.updated_at) %> ago
         </small>
         <hr>
-        <link_to "Edit", edit_article_path(article), class: "btn btn-primary btn-xs">
-        <link_to "Delete", article_path(article), class: "btn btn-primary btn-xs" method: :delete, data: { confirm: "Are you sure?" }>
+        <% if logged_in? && current_user == article.user %>
+          <link_to "Edit", edit_article_path(article), class: "btn btn-primary btn-xs">
+          <link_to "Delete", article_path(article), class: "btn btn-primary btn-xs" method: :delete, data: { confirm: "Are you sure?" }>
+        <% end %>
       </div>
     </div>
   </div>

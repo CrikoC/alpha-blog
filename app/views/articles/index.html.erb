@@ -1,4 +1,9 @@
-<h1>Articles <%= link_to 'Create New', new_article_path, class: 'btn btn-success btn-small' %></h1>
+<h1>
+  Articles
+  <% if logged_in? %>
+    <%= link_to 'Create New', new_article_path, class: 'btn btn-success btn-small' %>
+  <% end %>
+</h1>
 <div align="center">
   <%= will_paginate %>
 </div>

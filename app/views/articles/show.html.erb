@@ -16,12 +16,13 @@
       </div>
     </ul>
     <p><%= simple_format(@article.description) %></p>
+
     <div class="article-actions">
-      <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-warning btn-xs" %>
-      <%= link_to 'Delete', article_path(@article), class: 'btn btn-danger btn-xs' , method: :delete, data: { confirm: "Are you sure?" } %>
+      <% if logged_in? && current_user == article.user %>
+        <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-warning btn-xs" %>
+        <%= link_to 'Delete', article_path(@article), class: 'btn btn-danger btn-xs' , method: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
       <%= link_to 'Articles List', articles_path, class: "btn btn-default btn-xs" %>
     </div>
   </div>
 </div>
-
-
