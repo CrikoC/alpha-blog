@@ -9,6 +9,10 @@
     <div class="well">
         <h3 align="center"><%= link_to category.name, category_path(category) %></h3>
         <hr>
+        <small>
+          <%= pluralize(category.articles.count, "article") %>
+        </small>
+        <hr>
         <% if logged_in? && current_user.admin? %>
             <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary btn-xs" %>
             <%=
