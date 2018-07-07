@@ -1,0 +1,23 @@
+<h1>
+  Categories
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to 'Create New', new_category_path, class: 'btn btn-success btn-small' %>
+  <% end %>
+</h1>
+<% @categories.each do |category| %>
+  <div class="col-md-3 col-sm-6 col-sx-12">
+    <div class="well">
+        <h3 align="center"><%= link_to category.name, category_path(category) %></h3>
+        <hr>
+        <% if logged_in? && current_user.admin? %>
+            <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary btn-xs" %>
+            <%=
+              link_to "Delete",
+              category_path(category),
+              class: "btn btn-danger btn-xs",
+              method: :delete, data: { confirn: "Are you sure?" }
+            %>
+        <% end %>
+    </div>
+  </div>
+<% end %>
